@@ -380,7 +380,7 @@ int main(int argc, char **argv)
             }
         }
 
-        log_printf("Received %dB from %s", (int) packet_size, client_ip);
+        log_printf("Received %lluB from %s", packet_size, client_ip);
 
         if (packet_size < 19) {
             // Header:         12B
@@ -608,7 +608,7 @@ send_packet:
         }
 
         reply_packet_size = (size_t) (cursor - &reply_packet_buf[0]);
-        log_printf("Sending %dB response", (int) reply_packet_size);
+        log_printf("Sending %lluB response", reply_packet_size);
 
         while ((sendto(sockfd, &reply_packet_buf, reply_packet_size, 0,
           clientaddr, sizeof_clientaddr)) == -1) {
