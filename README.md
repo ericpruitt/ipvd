@@ -7,7 +7,8 @@ contents of the DNS request is mostly irrelevant. As long as it contains no
 more than a single, valid question, the ipvd server should respond.
 
 To build the binary, run `make` in the root of this repository which will
-create an executable named "ipvd".
+create an executable named "ipvd". The ipvd server has been succesfully tested
+on Linux and OpenBSD 5.9.
 
 Example
 -------
