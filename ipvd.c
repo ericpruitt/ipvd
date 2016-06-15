@@ -21,7 +21,7 @@
 #include <unistd.h>
 
 void close_server_socket(void);
-void log_printf(const char *format, ...);
+void log_printf(const char *, ...);
 int main(int, char **);
 void usage(char *);
 
@@ -92,7 +92,7 @@ static int sockfd = -1;
 /**
  * Display application usage information.
  *
- * @param self  Name or path of compiled executable.
+ * @param self Name or path of compiled executable.
  */
 void usage(char *self)
 {
@@ -137,7 +137,7 @@ void close_server_socket(void)
 #ifdef __GNUC__
 // Used to silence "format string is not a string literal" warnings on
 // GCC-compatible compilers.
-__attribute__((__format__ (__printf__, 1, 0)))
+__attribute__((__format__(__printf__, 1, 0)))
 #endif
 void log_printf(const char *format, ...)
 {
