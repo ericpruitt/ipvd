@@ -1,6 +1,6 @@
 CFLAGS = -std=c99 -Wall
 
-ipvd: ipvd.c
+ipvd: ipvd.c Makefile
 	$(CC) $(CFLAGS) $< -o $@
 
 sanity:
