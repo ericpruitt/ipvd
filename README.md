@@ -44,6 +44,28 @@ Querying the server:
     ;; WHEN: Tue Jun 14 21:16:20 PDT 2016
     ;; MSG SIZE  rcvd: 47
 
+A sample shell script is provided for running ipvd inside a chroot. It depends
+on the non-POSIX commands `chroot(8)` and `mktemp(1)`. The following is an
+example of the script executed on Linux using sudo:
+
+    $ sudo ./run-in-chroot.sh -u "$(id -u nobody)"
+    [sudo] password for ...:
+    2016-06-20T06:08:25+0000 Now bound to port 53
+    2016-06-20T06:08:25+0000 Dropped privileges; now running as UID 65534
+    2016-06-20T06:08:25+0000 Now accepting DNS requests
+
+In this example, the script is executed on OpenBSD after assuming the role of
+the super user:
+
+    $ su
+    Password:
+    # ./run-in-chroot.sh -u "$(id -u nobody)"
+    2016-06-19T23:47:06+0000 Now bound to port 53
+    2016-06-19T23:47:06+0000 Dropped privileges; now running as UID 32767
+    2016-06-19T23:47:06+0000 Now accepting DNS requests
+
+Any arguments passed to the script will be passed directly to the ipvd binary.
+
 Options
 -------
 

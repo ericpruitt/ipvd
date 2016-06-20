@@ -1,4 +1,4 @@
-CFLAGS = -std=c99 -Wall
+CFLAGS = -std=c99 -Wall -static
 
 ipvd: ipvd.c Makefile
 	$(CC) $(CFLAGS) $< -o $@
