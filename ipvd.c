@@ -166,6 +166,8 @@ void log_printf(const char *format, ...)
     }
 
     putchar('\n');
+
+    fflush(stdout);
 }
 
 int main(int argc, char **argv)
