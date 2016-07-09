@@ -176,6 +176,7 @@ int main(int argc, char **argv)
     char client_ip[INET6_ADDRSTRLEN];
     uint8_t *cursor;
     int gaierr;
+    char *endptr;
     const char *error;
     int i;
     int option;
@@ -236,9 +237,12 @@ int main(int argc, char **argv)
           // Bind to specific port. Defaults to 53.
           case 'p':
             errno = 0;
-            long_int = strtol(optarg, NULL, 10);
+            long_int = strtol(optarg, &endptr, 10);
             if (errno) {
                 perror("Invalid port argument");
+                return 1;
+            } else if (*endptr != '\0') {
+                fprintf(stderr, "%s: not a valid number\n", optarg);
                 return 1;
             } else if (long_int < 1 || long_int > 65535) {
                 fprintf(stderr, "Port must be an integer from 1 to 65535.\n");
@@ -250,9 +254,12 @@ int main(int argc, char **argv)
           // After binding to network, call setuid(...).
           case 'u':
             errno = 0;
-            long_int = strtol(optarg, NULL, 10);
+            long_int = strtol(optarg, &endptr, 10);
             if (errno) {
                 perror("Invalid UID argument");
+                return 1;
+            } else if (*endptr != '\0') {
+                fprintf(stderr, "%s: not a valid number\n", optarg);
                 return 1;
             } else if (long_int < 0) {
                 fprintf(stderr, "UID number is out of bounds.\n");
